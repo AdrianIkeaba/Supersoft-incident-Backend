@@ -1,4 +1,4 @@
-package com.supersoft.incident.repository;
+package com.supersoft.incident.repository.category;
 
 import com.supersoft.incident.model.category.Category;
 import org.springframework.data.jpa.repository.JpaRepository;

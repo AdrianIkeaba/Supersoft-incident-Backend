@@ -1,7 +1,7 @@
 package com.supersoft.incident.service.category;
 
 import com.supersoft.incident.model.category.Category;
-import com.supersoft.incident.repository.CategoryRepository;
+import com.supersoft.incident.repository.category.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;

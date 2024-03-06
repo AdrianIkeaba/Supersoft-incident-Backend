@@ -1,4 +1,4 @@
-package com.supersoft.incident.service;
+package com.supersoft.incident.service.registration;
 
 import com.supersoft.incident.model.registration.UserRegistration;
 import com.supersoft.incident.repository.registration.UserRegistrationRepository;
