@@ -1,5 +1,6 @@
-package com.supersoft.incident.model.login;
+package com.supersoft.incident.repository.login;
 
+import com.supersoft.incident.model.login.Login;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

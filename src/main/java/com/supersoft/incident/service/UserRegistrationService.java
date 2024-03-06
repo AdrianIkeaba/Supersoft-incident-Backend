@@ -1,7 +1,7 @@
 package com.supersoft.incident.service;
 
-import com.supersoft.incident.model.UserRegistration;
-import com.supersoft.incident.repository.UserRegistrationRepository;
+import com.supersoft.incident.model.registration.UserRegistration;
+import com.supersoft.incident.repository.registration.UserRegistrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

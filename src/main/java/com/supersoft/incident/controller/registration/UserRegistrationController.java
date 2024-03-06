@@ -1,6 +1,6 @@
-package com.supersoft.incident.controller;
+package com.supersoft.incident.controller.registration;
 
-import com.supersoft.incident.model.UserRegistration;
+import com.supersoft.incident.model.registration.UserRegistration;
 import com.supersoft.incident.service.UserRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

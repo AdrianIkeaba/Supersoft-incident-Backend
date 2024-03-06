@@ -1,4 +1,4 @@
-package com.supersoft.incident.model;
+package com.supersoft.incident.model.registration;
 
 import jakarta.persistence.*;
 

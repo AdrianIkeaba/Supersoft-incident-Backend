@@ -1,29 +1,31 @@
 package com.supersoft.incident.controller.login;
 
 import com.supersoft.incident.model.login.Login;
-import com.supersoft.incident.model.login.LoginRepository;
+import com.supersoft.incident.repository.login.LoginRepository;
 import com.supersoft.incident.model.login.LoginRequest;
 import com.supersoft.incident.model.user.User;
-import com.supersoft.incident.model.user.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.supersoft.incident.repository.user.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.sql.Date;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 @RestController
 public class AuthController {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private LoginRepository loginRepository;
+    private final LoginRepository loginRepository;
+
+    public AuthController(LoginRepository loginRepository, UserRepository userRepository) {
+        this.loginRepository = loginRepository;
+        this.userRepository = userRepository;
+    }
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
