@@ -11,8 +11,7 @@ public class UserRegistrationService {
     @Autowired
     private UserRegistrationRepository repository;
 
-    public UserRegistration saveUser(UserRegistration user) {
-        return repository.save(user);
+    public void saveUser(UserRegistration user) {
+        repository.save(user);
     }
 }
-

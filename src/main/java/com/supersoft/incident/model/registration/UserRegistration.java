@@ -10,40 +10,40 @@ public class UserRegistration {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "date")
     private String date;
 
     @Column(name = "last_edited_date")
     private String lastEditedDate;
 
-    @Column(name = "registration_id", nullable = false)
+    @Column(name = "registration_id")
     private String registrationId;
 
-    @Column(name = "firstname", nullable = false)
+    @Column(name = "firstname")
     private String firstName;
 
-    @Column(name = "lastname", nullable = false)
+    @Column(name = "lastname")
     private String lastName;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private String email;
 
-    @Column(name = "phonenumber", nullable = false)
+    @Column(name = "phonenumber")
     private String phoneNumber;
 
-    @Column(name = "organisation", nullable = false)
+    @Column(name = "organisation")
     private String organisation;
 
-    @Column(name = "department", nullable = false)
+    @Column(name = "department")
     private String department;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String password;
 
-    @Column(name = "passwordconfirmation", nullable = false)
+    @Column(name = "passwordconfirmation")
     private String passwordConfirmation;
 
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     private String status;
 
     // Getters and Setters
