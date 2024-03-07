@@ -1,12 +1,18 @@
 package com.supersoft.incident.model.casee;
 
+
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "casee")
 public class Case {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "date")
     private String date;
 
     @Column(name = "last_edited_date")
@@ -14,12 +20,20 @@ public class Case {
 
     @Column(name = "case_id")
     private String caseId;
+
+    @Column(name = "organisation")
     private String organisation;
+
+    @Column(name = "department")
     private String department;
 
     @Column(name = "client_name")
     private String clientName;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "respondent")
     private String respondent;
 
     @Column(name = "case_type")
@@ -30,22 +44,35 @@ public class Case {
 
     @Column(name = "stage_of_case")
     private String stageOfCase;
+
+    @Column(name = "urgency")
     private String urgency;
+
+    @Column(name = "priority")
     private String priority;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "description")
     private String description;
 
-    @Column(name = "filling_date")
+    @Column(name = "filing_date")
     private String filingDate;
 
     @Column(name = "task_assign")
     private String taskAssign;
+
+    @Column(name = "notify")
     private String notify;
+
+    @Column(name = "status")
     private String status;
+
+    @Column(name = "support")
     private String support;
 
     // Getters and Setters
-
     public int getId() {
         return id;
     }
@@ -214,4 +241,5 @@ public class Case {
         this.support = support;
     }
 }
+
 

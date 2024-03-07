@@ -33,7 +33,7 @@ public class AuthController {
         User user = userRepository.findByEmail(loginRequest.getEmail());
 
         if (user == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User does not exist");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User does not exist " + loginRequest.getPassword());
         }
 
         // Check password
@@ -42,13 +42,13 @@ public class AuthController {
         }
 
         // Successful login, save login info
-        saveLoginInfo(user.getEmail(), loginRequest.getUserAgent());
+        saveLoginInfo(user.getEmail());
 
         // Return user's first name in response
         return ResponseEntity.ok(user.getFirstname());
     }
 
-    private void saveLoginInfo(String userEmail, String userAgent) {
+    private void saveLoginInfo(String userEmail) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a");
         String formattedTime = dateFormat.format(Calendar.getInstance().getTime().getTime());
         // Create a new Login instance
@@ -60,7 +60,7 @@ public class AuthController {
         login.setDate(new Date(Calendar.getInstance().getTime().getTime()));
         login.setTime(formattedTime);
         login.setServerIp("127.0.0.1");
-        login.setUserAgent(userAgent);
+        login.setUserAgent("Android");
 
         // Save login info to the database
         loginRepository.save(login);

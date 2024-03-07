@@ -3,7 +3,6 @@ package com.supersoft.incident.model.login;
 import jakarta.persistence.*;
 
 import java.sql.Date;
-import java.sql.Time;
 
 @Entity
 @Table(name = "log")

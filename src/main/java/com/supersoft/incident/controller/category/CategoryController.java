@@ -21,4 +21,3 @@ public class CategoryController {
         return categoryService.getCategoryNames();
     }
 }
-
