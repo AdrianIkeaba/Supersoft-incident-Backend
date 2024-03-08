@@ -31,4 +31,9 @@ public class IncidentController {
         List<Incident> incidents = incidentService.getAllIncidents(email);
         return new ResponseEntity<>(incidents, HttpStatus.OK);
     }
+
+    @GetMapping("/count-incidents/{email}")
+    public int countIncidentsByEmail(@PathVariable String email) {
+        return incidentService.countIncidentsByEmail(email);
+    }
 }

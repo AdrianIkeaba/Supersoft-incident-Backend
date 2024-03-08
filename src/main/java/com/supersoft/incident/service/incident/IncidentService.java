@@ -20,4 +20,8 @@ public class IncidentService {
     public List<Incident> getAllIncidents(String email) {
         return incidentRepository.findByEmail(email);
     }
+
+    public int countIncidentsByEmail(String email) {
+        return incidentRepository.countByEmail(email);
+    }
 }
