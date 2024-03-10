@@ -18,13 +18,16 @@ public class UserRegistrationController {
     @Autowired
     private UserRegistrationService service;
 
+
     @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody UserRegistration user) {
+    public ResponseEntity<UserRegistrationResponse> registerUser(@RequestBody UserRegistration user) {
         try {
             service.saveUser(user);
-            return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully!");
+            UserRegistrationResponse response = new UserRegistrationResponse("User registered successfully!");
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error registering user");
+            UserRegistrationResponse response = new UserRegistrationResponse("Error registering user");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
 }
