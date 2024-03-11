@@ -1,6 +1,7 @@
 package com.supersoft.incident.controller.login;
 
 import com.supersoft.incident.model.login.Login;
+import com.supersoft.incident.model.login.LoginResponse;
 import com.supersoft.incident.repository.login.LoginRepository;
 import com.supersoft.incident.model.login.LoginRequest;
 import com.supersoft.incident.model.user.User;
@@ -28,24 +29,28 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
         // Retrieve user from database
         User user = userRepository.findByEmail(loginRequest.getEmail());
 
+
         if (user == null) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User does not exist " + loginRequest.getPassword());
+            LoginResponse loginResponse = new LoginResponse("User does not exist");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(loginResponse);
         }
 
         // Check password
         if (!user.getPassword().equals(loginRequest.getPassword())) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect password");
+            LoginResponse loginResponse = new LoginResponse("Incorrect password");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(loginResponse);
         }
 
         // Successful login, save login info
         saveLoginInfo(user.getEmail());
 
+        LoginResponse loginResponse = new LoginResponse(user.getFirstname());
         // Return user's first name in response
-        return ResponseEntity.ok(user.getFirstname());
+        return ResponseEntity.ok(loginResponse);
     }
 
     private void saveLoginInfo(String userEmail) {

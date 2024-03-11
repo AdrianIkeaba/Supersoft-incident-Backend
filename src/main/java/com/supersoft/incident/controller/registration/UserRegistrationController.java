@@ -24,7 +24,7 @@ public class UserRegistrationController {
         try {
             service.saveUser(user);
             UserRegistrationResponse response = new UserRegistrationResponse("User registered successfully!");
-            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+            return ResponseEntity.status(HttpStatus.valueOf(200)).body(response);
         } catch (Exception e) {
             UserRegistrationResponse response = new UserRegistrationResponse("Error registering user");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
