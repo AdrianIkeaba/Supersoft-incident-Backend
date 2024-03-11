@@ -1,6 +1,7 @@
 package com.supersoft.incident.controller.change;
 
 
+import com.supersoft.incident.model.ICCResponse;
 import com.supersoft.incident.model.change.Change;
 import com.supersoft.incident.service.change.ChangeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +17,14 @@ public class ChangeController {
     ChangeService changeService;
 
     @PostMapping("/create-change")
-    public ResponseEntity<String> createChange(@RequestBody Change change) {
+    public ResponseEntity<ICCResponse> createChange(@RequestBody Change change) {
         try {
             changeService.createChange(change);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Change created successfully");
+            ICCResponse iccResponse = new ICCResponse("Change Created Successfully");
+            return ResponseEntity.status(HttpStatus.CREATED).body(iccResponse);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Unable to create Change");
+            ICCResponse iccResponse = new ICCResponse("Unable to create Change");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(iccResponse);
         }
     }
 

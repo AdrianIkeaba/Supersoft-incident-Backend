@@ -20,6 +20,9 @@ public class User {
     @Column(name = "firstname")
     private String firstname;
 
+    @Column(name = "lastname")
+    private String lastname;
+
     // Constructors, getters, and setters
 
     public User() {
@@ -61,6 +64,14 @@ public class User {
 
     public void setFirstname(String firstname) {
         this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 }
 

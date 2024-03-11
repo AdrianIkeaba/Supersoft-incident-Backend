@@ -12,6 +12,42 @@ public class Incident {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Override
+    public String toString() {
+        return "Incident{" +
+                "id=" + id +
+                ", date=" + date +
+                ", lastEditedDate='" + lastEditedDate + '\'' +
+                ", incidentId='" + incidentId + '\'' +
+                ", contactType='" + contactType + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", incidentState='" + incidentState + '\'' +
+                ", category='" + category + '\'' +
+                ", impact='" + impact + '\'' +
+                ", subCategory='" + subCategory + '\'' +
+                ", urgency='" + urgency + '\'' +
+                ", service='" + service + '\'' +
+                ", product='" + product + '\'' +
+                ", priority='" + priority + '\'' +
+                ", serviceOffering='" + serviceOffering + '\'' +
+                ", assignmentGroup='" + assignmentGroup + '\'' +
+                ", notify='" + notify + '\'' +
+                ", assignmentTo='" + assignmentTo + '\'' +
+                ", shortDescription='" + shortDescription + '\'' +
+                ", title='" + title + '\'' +
+                ", incidentCause='" + incidentCause + '\'' +
+                ", youDid='" + youDid + '\'' +
+                ", description='" + description + '\'' +
+                ", organisation='" + organisation + '\'' +
+                ", department='" + department + '\'' +
+                ", photoname='" + photoname + '\'' +
+                ", filename='" + filename + '\'' +
+                ", status='" + status + '\'' +
+                ", support='" + support + '\'' +
+                '}';
+    }
+
     @Column(name = "date", nullable = false)
     private LocalDateTime date;
 

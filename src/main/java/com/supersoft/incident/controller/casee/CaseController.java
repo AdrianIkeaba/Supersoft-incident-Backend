@@ -1,5 +1,6 @@
 package com.supersoft.incident.controller.casee;
 
+import com.supersoft.incident.model.ICCResponse;
 import com.supersoft.incident.model.casee.Case;
 import com.supersoft.incident.service.casee.CaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +17,14 @@ public class CaseController {
     private CaseService caseService;
 
     @PostMapping("/create-case")
-    public ResponseEntity<String> createCase(@RequestBody Case casee) {
+    public ResponseEntity<ICCResponse> createCase(@RequestBody Case casee) {
         try {
             caseService.createCase(casee);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Case Created Successfully");
+            ICCResponse iccResponse = new ICCResponse("Case Created Successfully");
+            return ResponseEntity.status(HttpStatus.CREATED).body(iccResponse);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error creating Case");
+            ICCResponse iccResponse = new ICCResponse("Error creating Case");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(iccResponse);
         }
     }
 

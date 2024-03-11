@@ -48,7 +48,7 @@ public class AuthController {
         // Successful login, save login info
         saveLoginInfo(user.getEmail());
 
-        LoginResponse loginResponse = new LoginResponse(user.getFirstname());
+        LoginResponse loginResponse = new LoginResponse(user.getFirstname() + " " + user.getLastname());
         // Return user's first name in response
         return ResponseEntity.ok(loginResponse);
     }
