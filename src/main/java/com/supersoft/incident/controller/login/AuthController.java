@@ -35,20 +35,20 @@ public class AuthController {
 
 
         if (user == null) {
-            LoginResponse loginResponse = new LoginResponse("User does not exist");
+            LoginResponse loginResponse = new LoginResponse("User does not exist", "", "", "");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(loginResponse);
         }
 
         // Check password
         if (!user.getPassword().equals(loginRequest.getPassword())) {
-            LoginResponse loginResponse = new LoginResponse("Incorrect password");
+            LoginResponse loginResponse = new LoginResponse("Incorrect password", "", "", "");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(loginResponse);
         }
 
         // Successful login, save login info
         saveLoginInfo(user.getEmail());
 
-        LoginResponse loginResponse = new LoginResponse(user.getFirstname() + " " + user.getLastname());
+        LoginResponse loginResponse = new LoginResponse(user.getFirstname() + " " + user.getLastname(), user.getOrganisation(), user.getDepartment(), "");
         // Return user's first name in response
         return ResponseEntity.ok(loginResponse);
     }

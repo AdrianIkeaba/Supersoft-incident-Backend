@@ -24,4 +24,9 @@ public class IncidentService {
     public int countIncidentsByEmail(String email) {
         return incidentRepository.countByEmail(email);
     }
+
+    public String findStatusByEmail(String email) {
+        return incidentRepository.findStatusByEmail(email);
+    }
+
 }

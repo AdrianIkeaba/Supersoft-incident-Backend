@@ -11,4 +11,7 @@ public interface IncidentRepository extends JpaRepository<Incident, Integer> {
 
     @Query("SELECT COUNT(*) FROM Incident i WHERE i.email = ?1")
     int countByEmail(String email);
+
+    @Query(value = "SELECT status FROM incident WHERE email = ?1 ORDER BY date DESC LIMIT 1", nativeQuery = true)
+    String findStatusByEmail(String email);
 }

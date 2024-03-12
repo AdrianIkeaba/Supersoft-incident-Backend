@@ -4,6 +4,7 @@ package com.supersoft.incident.controller.incident;
 import com.supersoft.incident.model.ICCResponse;
 import com.supersoft.incident.model.incident.Incident;
 import com.supersoft.incident.model.incident.IncidentCountResponse;
+import com.supersoft.incident.model.incident.IncidentStatusResponse;
 import com.supersoft.incident.service.incident.IncidentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,4 +43,12 @@ public class IncidentController {
         IncidentCountResponse incidentCountResponse = new IncidentCountResponse(count);
         return ResponseEntity.ok(incidentCountResponse);
     }
+
+    @GetMapping("/status/{email}")
+    public ResponseEntity<IncidentStatusResponse> findStatusByEmail(@PathVariable String email) {
+        String status = incidentService.findStatusByEmail(email);
+        IncidentStatusResponse incidentStatusResponse = new IncidentStatusResponse(status);
+        return ResponseEntity.ok(incidentStatusResponse);
+    }
+
 }

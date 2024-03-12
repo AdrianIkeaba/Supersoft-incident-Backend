@@ -23,15 +23,24 @@ public class User {
     @Column(name = "lastname")
     private String lastname;
 
+    @Column(name = "organisation")
+    private String organisation;
+
+    @Column(name = "department")
+    private String department;
+
+
     // Constructors, getters, and setters
 
     public User() {
     }
 
-    public User(String email, String password, String firstname) {
+    public User(String email, String password, String firstname, String organisation, String department) {
         this.email = email;
         this.password = password;
         this.firstname = firstname;
+        this.organisation = organisation;
+        this.department = department;
     }
 
     public int getId() {
@@ -72,6 +81,22 @@ public class User {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public String getOrganisation() {
+        return organisation;
+    }
+
+    public void setOrganisation(String organisation) {
+        this.organisation = organisation;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 }
 

@@ -49,7 +49,7 @@ public class Incident {
     }
 
     @Column(name = "date", nullable = false)
-    private LocalDateTime date;
+    private String date;
 
     @Column(name = "last_edited_date", nullable = false, length = 255)
     private String lastEditedDate;
@@ -144,11 +144,11 @@ public class Incident {
         this.id = id;
     }
 
-    public LocalDateTime getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
