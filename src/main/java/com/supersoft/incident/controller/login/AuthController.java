@@ -33,7 +33,7 @@ public class AuthController {
         // Retrieve user from database
         User user = userRepository.findByEmail(loginRequest.getEmail());
 
-
+        //Check if user exists
         if (user == null) {
             LoginResponse loginResponse = new LoginResponse("User does not exist", "", "", "");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(loginResponse);
@@ -42,6 +42,12 @@ public class AuthController {
         // Check password
         if (!user.getPassword().equals(loginRequest.getPassword())) {
             LoginResponse loginResponse = new LoginResponse("Incorrect password", "", "", "");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(loginResponse);
+        }
+
+        //Check if user is authorized
+        if (!user.getStatus().equals("AUTHORIZED")) {
+            LoginResponse loginResponse = new LoginResponse("User is not authorized", "", "", "");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(loginResponse);
         }
 

@@ -29,18 +29,22 @@ public class User {
     @Column(name = "department")
     private String department;
 
+    @Column(name = "status")
+    private String status;
+
 
     // Constructors, getters, and setters
 
     public User() {
     }
 
-    public User(String email, String password, String firstname, String organisation, String department) {
+    public User(String email, String password, String firstname, String organisation, String department, String status) {
         this.email = email;
         this.password = password;
         this.firstname = firstname;
         this.organisation = organisation;
         this.department = department;
+        this.status = status;
     }
 
     public int getId() {
@@ -97,6 +101,14 @@ public class User {
 
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
 
