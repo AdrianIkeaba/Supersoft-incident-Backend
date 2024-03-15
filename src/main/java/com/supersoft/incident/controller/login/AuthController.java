@@ -48,7 +48,7 @@ public class AuthController {
         //Check if user is authorized
         if (!user.getStatus().equals("AUTHORIZED")) {
             LoginResponse loginResponse = new LoginResponse("User is not authorized", "", "", "");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(loginResponse);
+            return ResponseEntity.status(401).body(loginResponse);
         }
 
         // Successful login, save login info
