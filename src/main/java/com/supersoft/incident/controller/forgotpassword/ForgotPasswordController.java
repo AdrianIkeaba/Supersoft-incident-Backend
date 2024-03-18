@@ -1,6 +1,7 @@
 package com.supersoft.incident.controller.forgotpassword;
 
 
+import com.supersoft.incident.model.forgotpassword.FPResponse;
 import com.supersoft.incident.model.forgotpassword.ForgotPassword;
 import com.supersoft.incident.model.user.User;
 import com.supersoft.incident.repository.forgotpassword.ForgotPasswordRepository;
@@ -30,17 +31,18 @@ public class ForgotPasswordController {
     }
 
     @PostMapping("/forgot-password")
-    public ResponseEntity<String> forgotPassword(@RequestBody ForgotPassword forgotPassword) {
+    public ResponseEntity<FPResponse> forgotPassword(@RequestBody ForgotPassword forgotPassword) {
         User user = userRepository.findByEmail(forgotPassword.getEmail());
 
         //Check if user exists
         if (user == null) {
-            return ResponseEntity.status(404).body("");
+            FPResponse fpResponse = new FPResponse("User does not exist");
+            return ResponseEntity.status(404).body(fpResponse);
         }
 
         sendMail(forgotPassword.getEmail(), forgotPassword.getPassword(), forgotPassword.getFirstname(), forgotPassword.getDate());
-        return ResponseEntity.status(200).body("");
-
+        FPResponse fpResponse = new FPResponse("Email sent");
+        return ResponseEntity.status(200).body(fpResponse);
     }
 
     private void sendMail(String email, String password, String firstname, String date) {
