@@ -7,15 +7,11 @@ import com.supersoft.incident.model.user.User;
 import com.supersoft.incident.repository.forgotpassword.ForgotPasswordRepository;
 import com.supersoft.incident.repository.user.UserRepository;
 import com.supersoft.incident.service.EmailSenderService;
-import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.sql.Date;
-import java.util.Calendar;
 
 @RestController
 public class ForgotPasswordController {
