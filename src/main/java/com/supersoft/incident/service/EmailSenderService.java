@@ -3,21 +3,30 @@ package com.supersoft.incident.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 
 @Service
 public class EmailSenderService {
+    private final JavaMailSender javaMailSender;
+
     @Autowired
-    private JavaMailSender javaMailSender;
+    public EmailSenderService(JavaMailSender javaMailSender) {
+        this.javaMailSender = javaMailSender;
+    }
 
+    public void sendEmail(String toEmail, String subject, String body) throws MessagingException {
+        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true); // true indicates multipart message
 
-    public void sendEmail(String toEmail, String subject, String body) {
-        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setFrom("adrianikeaba@gmail.com");
-        simpleMailMessage.setTo(toEmail);
-        simpleMailMessage.setSubject(subject);
-        simpleMailMessage.setText(body);
+        helper.setFrom("adrianikeaba@gmail.com");
+        helper.setTo(toEmail);
+        helper.setSubject(subject);
+        helper.setText(body, true); // true indicates HTML content
 
-        javaMailSender.send(simpleMailMessage);
+        javaMailSender.send(mimeMessage);
     }
 }
