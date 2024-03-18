@@ -7,13 +7,13 @@ import com.supersoft.incident.model.user.User;
 import com.supersoft.incident.repository.forgotpassword.ForgotPasswordRepository;
 import com.supersoft.incident.repository.user.UserRepository;
 import com.supersoft.incident.service.EmailSenderService;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.mail.MessagingException;
 import java.sql.Date;
 import java.util.Calendar;
 
@@ -57,13 +57,9 @@ public class ForgotPasswordController {
         forgotPassword.setPassword(password);
 
         try {
-            try {
-                emailSenderService.sendEmail(email, "PASSWORD RECOVERY FOR SUPERSOFT INCIDENT PORTAL", "Hello " + firstname +
-                        ",\n The password you used on the Incident App account is: " + password +
-                        "\n DO NOT SHARE THIS PASSWORD WITH ANYONE. CONTACT ADMIN IF PASSWORD HAS BEEN COMPROMISED.");
-            } catch (jakarta.mail.MessagingException e) {
-                throw new RuntimeException(e);
-            }
+            emailSenderService.sendEmail(email, "PASSWORD RECOVERY FOR SUPERSOFT INCIDENT PORTAL", "Hello " + firstname +
+                    ",\n The password you used on the Incident App account is: " + password +
+                    "\n DO NOT SHARE THIS PASSWORD WITH ANYONE. CONTACT ADMIN IF PASSWORD HAS BEEN COMPROMISED.");
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }

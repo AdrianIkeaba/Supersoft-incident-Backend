@@ -18,7 +18,7 @@ public class EmailSenderService {
         this.javaMailSender = javaMailSender;
     }
 
-    public void sendEmail(String toEmail, String subject, String body) throws MessagingException, jakarta.mail.MessagingException {
+    public void sendEmail(String toEmail, String subject, String body) throws jakarta.mail.MessagingException {
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true); // true indicates multipart message
 
