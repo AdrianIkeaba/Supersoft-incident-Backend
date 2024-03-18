@@ -40,7 +40,7 @@ public class ForgotPasswordController {
             return ResponseEntity.status(404).body(fpResponse);
         }
 
-        sendMail(forgotPassword.getEmail(), forgotPassword.getPassword(), forgotPassword.getFirstname(), forgotPassword.getDate());
+        sendMail(forgotPassword.getEmail(), user.getPassword(), forgotPassword.getFirstname(), forgotPassword.getDate());
         FPResponse fpResponse = new FPResponse("Email sent");
         return ResponseEntity.status(200).body(fpResponse);
     }
