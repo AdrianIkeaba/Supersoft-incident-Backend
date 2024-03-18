@@ -6,9 +6,8 @@ import jakarta.persistence.*;
 @Table(name = "forgotpassword")
 public class ForgotPassword {
 
-    public ForgotPassword(int id, String firstname, String email, String password) {
+    public ForgotPassword(int id, String email, String password) {
         this.id = id;
-        this.firstname = firstname;
         this.email = email;
         this.password = password;
     }
