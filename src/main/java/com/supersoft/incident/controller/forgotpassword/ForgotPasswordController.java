@@ -56,13 +56,9 @@ public class ForgotPasswordController {
         forgotPassword.setFirstname(firstname);
         forgotPassword.setPassword(password);
 
-        try {
-            emailSenderService.sendEmail(email, "PASSWORD RECOVERY FOR SUPERSOFT INCIDENT PORTAL", "Hello " + firstname +
-                    ",\n The password you used on the Incident App account is: " + password +
-                    "\n DO NOT SHARE THIS PASSWORD WITH ANYONE. CONTACT ADMIN IF PASSWORD HAS BEEN COMPROMISED.");
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
+        emailSenderService.sendEmail(email, "PASSWORD RECOVERY FOR SUPERSOFT INCIDENT PORTAL", "Hello " + firstname +
+                ",\n The password you used on the Incident App account is: " + password +
+                "\n DO NOT SHARE THIS PASSWORD WITH ANYONE. CONTACT ADMIN IF PASSWORD HAS BEEN COMPROMISED.");
 
         forgotPasswordRepository.save(forgotPassword);
     }

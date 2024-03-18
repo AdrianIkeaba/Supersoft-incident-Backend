@@ -1,32 +1,47 @@
 package com.supersoft.incident.service;
 
-import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 
-import javax.mail.MessagingException;
+import java.util.Properties;
 
 @Service
 public class EmailSenderService {
-    private final JavaMailSender javaMailSender;
-
     @Autowired
-    public EmailSenderService(JavaMailSender javaMailSender) {
-        this.javaMailSender = javaMailSender;
+    private JavaMailSender javaMailSender;
+
+    @Bean
+    public JavaMailSender getJavaMailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+
+        mailSender.setUsername("adrianikeaba@gmail.com");
+        mailSender.setPassword("dtglguihmbepphta");
+
+        Properties props = mailSender.getJavaMailProperties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.debug", "true");
+
+        return mailSender;
     }
 
-    public void sendEmail(String toEmail, String subject, String body) throws jakarta.mail.MessagingException {
-        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true); // true indicates multipart message
 
-        helper.setFrom("adrianikeaba@gmail.com");
-        helper.setTo(toEmail);
-        helper.setSubject(subject);
-        helper.setText(body, true); // true indicates HTML content
+    public void sendEmail(String toEmail, String subject, String body) {
+        SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+        simpleMailMessage.setFrom("adrianikeaba@gmail.com");
+        simpleMailMessage.setTo(toEmail);
+        simpleMailMessage.setSubject(subject);
+        simpleMailMessage.setText(body);
 
-        javaMailSender.send(mimeMessage);
+        //Mime
+
+        javaMailSender.send(simpleMailMessage);
     }
 }
