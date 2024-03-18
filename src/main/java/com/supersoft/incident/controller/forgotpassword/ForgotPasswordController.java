@@ -7,6 +7,7 @@ import com.supersoft.incident.model.user.User;
 import com.supersoft.incident.repository.forgotpassword.ForgotPasswordRepository;
 import com.supersoft.incident.repository.user.UserRepository;
 import com.supersoft.incident.service.EmailSenderService;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,14 +38,18 @@ public class ForgotPasswordController {
             return ResponseEntity.status(404).body(fpResponse);
         }
 
-        sendMail(forgotPassword.getEmail(), user.getPassword(), user.getFirstname(), forgotPassword.getDate());
+        try {
+            sendMail(forgotPassword.getEmail(), user.getPassword(), user.getFirstname(), forgotPassword.getDate());
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
         forgotPassword.setFirstname(user.getFirstname());
         forgotPassword.setPassword(user.getPassword());
         FPResponse fpResponse = new FPResponse("Email sent");
         return ResponseEntity.status(200).body(fpResponse);
     }
 
-    private void sendMail(String email, String password, String firstname, String date) {
+    private void sendMail(String email, String password, String firstname, String date) throws MessagingException {
         ForgotPassword forgotPassword = new ForgotPassword();
 
         forgotPassword.setDate(date);
