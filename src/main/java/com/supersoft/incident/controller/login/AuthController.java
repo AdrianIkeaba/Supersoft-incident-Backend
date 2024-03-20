@@ -36,19 +36,19 @@ public class AuthController {
         //Check if user exists
         if (user == null) {
             LoginResponse loginResponse = new LoginResponse("User does not exist", "", "", "");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(loginResponse);
+            return ResponseEntity.status(404).body(loginResponse);
         }
 
         // Check password
         if (!user.getPassword().equals(loginRequest.getPassword())) {
             LoginResponse loginResponse = new LoginResponse("Incorrect password", "", "", "");
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(loginResponse);
+            return ResponseEntity.status(401).body(loginResponse);
         }
 
         //Check if user is authorized
         if (!user.getStatus().equals("AUTHORIZED")) {
             LoginResponse loginResponse = new LoginResponse("User is not authorized", "", "", "");
-            return ResponseEntity.status(401).body(loginResponse);
+            return ResponseEntity.status(403).body(loginResponse);
         }
 
         // Successful login, save login info
