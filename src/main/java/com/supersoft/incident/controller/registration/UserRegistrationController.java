@@ -26,7 +26,6 @@ public class UserRegistrationController {
 
     @PostMapping("/register")
     public ResponseEntity<UserRegistrationResponse> registerUser(@RequestBody UserRegistration user) {
-        try {
             User user1 = userRepository.findByEmail(user.getEmail());
             //Check if user exists
             if (user1 == null) {
@@ -34,6 +33,7 @@ public class UserRegistrationController {
                 return ResponseEntity.status(HttpStatus.valueOf(409)).body(response);
             }
 
+        try {
             service.saveUser(user);
             UserRegistrationResponse response = new UserRegistrationResponse("User registered successfully!");
             return ResponseEntity.status(HttpStatus.valueOf(200)).body(response);
